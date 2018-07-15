@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+      <!-- navbar -->
+      <ul id="notif" class="dropdown-content">
+        <li><a href="#!">one</a></li>
+        <li><a href="#!">two</a></li>
+        <li class="divider"></li>
+        <li><a href="#!">three</a></li>
+      </ul>
+      <ul id="add1" class="dropdown-content">
+        <li><h5>Tambah Sesuatu</h5></li>
+        <li class="divider"></li>
+        <li><a href="#!">Menu</a></li>
+        <li><a href="#!">Bahan</a></li>
+      </ul>
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper grey darken-3">
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+            <a href="#!" class="brand-logo">GORESTO</a>
+            <ul class="right hide-on-med-and-down">
+              <li><a href="#"><i class="material-icons">chat</i></a></li>
+              <li><a class="dropdown-button2" href="#" data-activates="notif"><i class="large material-icons">notifications</i></a></li>
+              <li><a class="dropdown-button" href="#" data-activates="add1"><i class="large material-icons">add</i></a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <!-- /end navbar -->
+
+      <!-- content -->
+      <div id="main">
+        <div class="row">
+          <!-- side menu -->
+          <div class="side-menu">
+            <ul id="slide-out" class="side-nav fixed leftside-navigation ps-container ps-active-y">
+              <li>
+                <div class="user-view">
+                  <div class="background">
+                  </div>
+                  <div class="row">
+                    <div class="col s5">
+                      <a href="#!user" class="a"><img class="circle responsive-img valign profile-image" src="images/avatar.jpg"></a>
+                    </div>
+                    <div class="col s7">
+                      <a class='btn-flat dropdown-button white-text profile-btn non-pading' href='#' data-activates='dropdown1'>John Doe<i class="material-icons right non-margin">arrow_drop_down</i></a>
+                      <!-- Dropdown Structure -->
+                      <ul id='dropdown1' class='dropdown-content'>
+                        <li><a href="#!">one</a></li>
+                        <li><a href="#!">two</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#!">three</a></li>
+                        <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+                        <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+                      </ul>
+                      <span class="white-text email">Pemilik Restoran</span>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li><a href="#!"><i class="material-icons margin-icon">dashboard</i>Dashboard</a></li>
+              <li><a href="#!">Second Link</a></li>
+              <li><div class="divider"></div></li>
+              <li><a class="subheader">Subheader</a></li>
+              <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+              <li></li>
+            </ul>
+          </div>
+          <!-- /end side menu -->
+
+
+
+          <!-- Teal page Content -->
+          <div class="main">
+            <div class="row">
+              <div class="col s12">
+                <h4 class="center">Stock Bahan</h4>
+              </div>
+              <div class="col s12 m12">
+                <table class="highlight">
+                  <thead>
+                    <tr>
+                        <th>Nama Bahan</th>
+                        <th>Tanggal Expired</th>
+                        <th>Sisa</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr class="warning bahan">
+                      <td>Ayam</td>
+                      <td>15 Hari</td>
+                      <td style="display:flex;align-items: center;"><span>1 Kg</span>
+                        <i class="material-icons tooltipped" data-position="bottom" data-tooltip="Stok Menipis">warning</i></td>
+                      <td>
+                        <a href="#" class="close"><i class="material-icons right">close</i></a>
+                      </td>
+                    </tr>
+                    <tr class="bahan">
+                      <td>beras</td>
+                      <td>1 tahun</td>
+                      <td>20 kg</td>
+                      <td>
+                        <a href="#" class="close"><i class="material-icons right">close</i></a>
+                      </td>
+                    </tr>
+                    <tr class="warning bahan">
+                      <td>Cabai Merah</td>
+                      <td style="display:flex;align-items: center;">1 hari
+                        <i class="material-icons tooltipped" data-position="bottom" data-tooltip="Sudah Mau Expired">warning</i>
+                      </td>
+                      <td>20 kg</td>
+                      <td>
+                        <a href="#"><i class="material-icons right">close</i></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="fixed-action-btn vertical">
+                <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+                <ul>
+                  <li><a class="btn-floating red"><i class="material-icons tooltipped" data-position="left" data-tooltip="Tambah Bahan">add</i></a></li>
+                  <li><a class="btn-floating yellow darken-1"><i class="material-icons tooltipped" data-position="left" data-tooltip="Update bahan">update</i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- end Teal page content -->
+        </div>
+      </div>
+      
+      <!-- end content -->
+
+      <!-- Modal Structure -->
+      <div id="category1" class="modal">
+        <div class="modal-content">
+          <h4 class="black-text">Tambah Kategori</h4>
+          <form>
+            <div class="input-field">
+              <input id="text" type="text" class="validate font-color">
+              <label for="text" data-error="wrong" data-success="right">Nama Kategori</label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+        </div>
+      </div>
+
+      <!-- Modal Structure -->
+      <div id="bahan" class="modal">
+        <div class="modal-content">
+          <h4 class="black-text">Edit Bahan</h4>
+          <form>
+            <div class="row">    
+              <div class="input-field col s12">
+                <input id="text" type="text">
+                <label for="text">Nama Bahan</label>
+              </div>
+              <div class="input-field col s6">
+                <label for="estimasi" class="active">tanggal expired</label>
+                <input id="estimasi" type="text" class="datepicker black-text">
+              </div>
+              <div class="input-field col s3">
+                <input id="text" type="number">
+                <label for="text">sisa</label>
+              </div>
+               <div class="input-field col s3">
+                <select>
+                  <option value="1">Kilo</option>
+                  <option value="2">Ons</option>
+                  <option value="3">Liter</option>
+                </select>
+                <label>Pilih Satuan</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea id="textarea1" class="materialize-textarea"></textarea>
+                <label for="textarea1">Deskripsi (optional)</label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+        </div>
+      </div>
+
+      <!-- Modal Structure -->
+      <div id="makanan" class="modal">
+        <div class="modal-content">
+          <h4 class="black-text">Tambah Makanan</h4>
+          <form action="#">
+            <div class="row">
+              <div class="input-field col s10">
+                <input id="text" type="text" class="validate black-text">
+                <label for="text">Nama Makanan</label>
+              </div>
+              <div class="input-field col s2">
+                <label for="estimasi" class="active">Estimasi</label>
+                <input id="estimasi" type="text" class="timepicker">
+              </div>
+            </div>
+            <div class="input-field">
+              <textarea id="textarea1" class="materialize-textarea black-text"></textarea>
+              <label for="textarea1">Deskripsi</label>
+            </div>
+            <div class="file-field input-field">
+              <div class="btn">
+                <span>Gambar</span>
+                <input type="file">
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate black-text" type="text" placeholder="Upload one or more files">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+        </div>
+      </div>
+      <!-- script -->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="js/goresto.js"></script>
+      <!-- end script -->
+    </body>
+  </html>

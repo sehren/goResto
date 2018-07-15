@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Data Koki</title>
+    </head>
+    <body>
+      <!-- navbar -->
+      <ul id="add1" class="dropdown-content">
+        <li class="center"><b>Tambah</b></li>
+        <li class="divider"></li>
+        <li><a href="/">Tambah Menu</a></li>
+        <li><a class="modal-trigger" href="#menu">Tambah Koki</a></li>
+      </ul>
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper teal">
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+            <a href="#!" class="brand-logo">GORESTO</a>
+            <ul class="right hide-on-med-and-down">
+              <li><a class="dropdown-button" href="#" data-activates="add1"><i class="large material-icons">add</i></a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <!-- /end navbar -->
+
+      <!-- content -->
+      <div id="main">
+        <div class="row">
+          <!-- side menu -->
+          <div class="side-menu">
+            <ul id="slide-out" class="side-nav fixed leftside-navigation ps-container ps-active-y">
+              <li>
+                <div class="user-view">
+                  <div class="background">
+                  </div>
+                  <div class="row">
+                    <div class="col s5">
+                      <a href="#!user" class="a"><img class="circle responsive-img valign profile-image" src="images/avatar.jpg"></a>
+                    </div>
+                    <div class="col s7">
+                      <a class='btn-flat white-text profile-btn non-pading' href='#'>{{name}}</a>
+                      <span class="white-text email">Pemilik Restoran</span>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li><a class="waves-effect" href="/"><i class="material-icons margin-icon">restaurant</i>Data Menu</a></li>
+              <li class="active"><a class="waves-effect" href="/koki"><i class="material-icons margin-icon">person</i>Data Koki</a></li>
+              <li><a class="waves-effect" href="/pembuatan"><i class="material-icons margin-icon">schedule</i>Pembuatan</a></li>
+              <li><a class="waves-effect" href="/pesanan-masuk"><i class="material-icons margin-icon">today</i>Pesanan Masuk</a></li>
+              <li><a class="waves-effect" href="/pembayaran"><i class="material-icons margin-icon">attach_money</i>Pembayaran</a></li>
+              <li><a class="waves-effect" href="/restoran"><i class="material-icons margin-icon">settings</i>Pengaturan</a></li>
+              <!-- <li><div class="divider"></div></li>
+              <li><a class="subheader">Subheader</a></li> -->
+              <li><a class="waves-effect" href="/logout"><i class="material-icons margin-icon">arrow_forward</i>logout</a></li>
+            </ul>
+          </div>
+          <!-- /end side menu -->
+
+
+
+          <!-- Teal page Content -->
+          <div class="main">
+            {%if koki!=""%}
+              {% for item in koki %}
+              <div class="menu">
+                <div class="row">
+                  <div class="col">
+                    <i class="material-icons brown-text text-lighten-3">restaurant_menu</i>
+                  </div>
+                  <div class="col s2 bold">
+                    <b>{{item.namaKoki}}</b>
+                  </div>
+                  <div class="col">
+                    <i class="material-icons pointer waves-effect delete" id="{{item.idKoki}}">close</i>
+                  </div>
+                </div>
+                <div class="row">
+                  {% for isi in menuKoki %}
+                    {% if isi.idKoki == item.idKoki %}
+                    <div class="col s12 m3">
+                      <div class="card-panel z-depth-5 teal card-size hover waves-effect waves-light">
+                        <span class="col s6 white-text"><b>{{isi.nama}}</b></span>
+                        <span class="col s6 white-text right-align">{{isi.estimasi}} menit</span>
+                      </div>
+                    </div>
+                    {%endif%}
+                  {%endfor%}
+                  <div class="col s12 m3">
+                    <a class="modal-trigger tampil-modal" href="#koki{{item.idKoki}}" id="{{item.idKoki}}">
+                      <div class="card-panel z-depth-1 create card-size waves-effect waves-light center-align">
+                        <span class="grey-text">tambah...</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {%endfor%}
+            {%else%}
+            <div class="menu add-more center">
+              <div class="row">
+                <div class="col s12">
+                  <h4>Kamu belum menambahkan koki</h4>
+                </div>
+                <div class="col s12">
+                  <p class="tag">tambah koki anda sekarang</p>
+                </div>
+                <div class="col s12">
+                <a class="waves-effect waves-light btn modal-trigger" href="#menu">Tambah Koki</a>
+                </div>
+              </div>
+            </div>
+            {%endif%}
+          </div>
+          <!-- end Teal page content -->
+        </div>
+      </div>
+      
+      <!-- end content -->
+
+      <!-- Modal Structure -->
+      {%for Koki in koki%}
+      <div id="koki{{Koki.idKoki}}" class="modal">
+        <div class="modal-content hgh300">
+          <h4 class="black-text">Tambah Menu</h4>
+           <form action="#">
+            <div class="row">
+              <div class="input-field col s6">
+                <select class="select{{Koki.idKoki}}">
+                  {%for menujenis in menuJenis%}
+                    {%set isTrue = false %}
+                      {%for menukoki in menuKoki%}
+                        {%if Koki.idKoki == menukoki.idKoki%}
+                            {%if menujenis.idMakanan == menukoki.idMakanan%}
+                              {%set isTrue = true %}
+                            {%endif%}
+                        {%endif%}
+                      {%endfor%}
+                    {%if isTrue == false %}
+                      <option value="{{menujenis.idMakanan}}">{{menujenis.nama}}</option>
+                    {%endif%}
+                  {%endfor%}
+                </select>
+                <label>Pilih Menu</label>
+              </div>
+              <div class="input-field col s6">
+                <label for="estimasi" class="active">Estimasi (menit)</label>
+                <input id="estimasi" type="number" class="estimasi{{Koki.idKoki}}">
+              </div>
+            </div>
+          </form>
+        </div>
+        {%if menuJenis==undefined%}
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat submit disabled">Submit</a>
+        </div>
+        {%else%}
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat submit">Submit</a>
+        </div>
+        {%endif%}
+      </div>
+      {%endfor%}
+      <div id="menu" class="modal">
+        <div class="modal-content">
+          <h4 class="black-text">Tambah Koki</h4>
+          <form>
+            <div class="input-field">
+              <input id="text" type="text" class="validate black-text nama-menu" autofocus>
+              <label for="text">Nama Koki</label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat submit-menu">Submit</a>
+        </div>
+      </div>
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="js/goresto.js"></script>
+      <script type="text/javascript">
+        $(function () {
+          var idOwner = {{ idOwner | dump | safe }}
+          var socket = io();
+          socket.on(idOwner,function(msg){
+            var $toastContent = $('<span>anda mendapatkan pesanan baru</span>').add($('<a href="/pesanan-masuk" class="btn-flat toast-action">check sekarang</a>'));
+            Materialize.toast($toastContent, 3000);
+          })
+
+          $('.submit-menu').click(function(){
+            var nama = $('.nama-menu').val();
+            $.post("http://localhost:3000/koki/tambah-koki",{name : nama},function(event){
+              if(event=="sukses"){
+                window.location.href="/koki"
+              }
+            })
+          });
+          var idKoki;
+          $('.tampil-modal').click(function(){
+            idKoki = $(this).attr("id")
+          })
+          $('.submit').click(function(){
+            console.log(idKoki)
+            var data = {idMakanan : $('.select'+idKoki+' :selected').val(),nama : $('.select'+idKoki+' :selected').text(),estimasi : $('.estimasi'+idKoki).val(), idKoki : idKoki}
+            $.post("http://localhost:3000/koki/tambah-menuKoki",data,function(ev){
+              if(ev=="sukses"){
+                window.location.href="/koki"
+              }
+            })
+          })
+          $('.delete').click(function(){
+            var data = $(this).attr("id")
+            $.post("http://localhost:3000/koki/hapus-koki",{type : data},function(event){
+              if(event=="sukses"){
+                window.location.href="/koki"
+              }
+            })
+          })
+        });
+      </script>
+    </body>
+  </html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Pembuatan</title>
+    </head>
+    <body>
+      <!-- navbar -->
+      <ul id="add1" class="dropdown-content">
+        <li class="center"><b>Tambah</b></li>
+        <li class="divider"></li>
+        <li><a href="/">Tambah Menu</a></li>
+        <li><a href="/koki">Tambah Koki</a></li>
+      </ul>
+
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper teal">
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+            <a href="#!" class="brand-logo">GORESTO</a>
+            <ul class="right hide-on-med-and-down">
+              <li><a class="dropdown-button" href="#" data-activates="add1"><i class="large material-icons">add</i></a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <!-- /end navbar -->
+
+      <!-- content -->
+      <div id="main">
+        <div class="row">
+          <!-- side menu -->
+          <div class="side-menu">
+            <ul id="slide-out" class="side-nav fixed leftside-navigation ps-container ps-active-y">
+              <li>
+                <div class="user-view">
+                  <div class="background">
+                  </div>
+                  <div class="row">
+                    <div class="col s5">
+                      <a href="#!user" class="a"><img class="circle responsive-img valign profile-image" src="images/avatar.jpg"></a>
+                    </div>
+                    <div class="col s7">
+                      <a class='btn-flat white-text profile-btn non-pading' href='#'>{{name}}<span class="idowner" hidden>{{idOwner}}</span></a>
+                      <span class="white-text email">Pemilik Restoran</span>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li><a class="waves-effect" href="/"><i class="material-icons margin-icon">restaurant</i>Data Menu</a></li>
+              <li><a class="waves-effect" href="/koki"><i class="material-icons margin-icon">person</i>Data Koki</a></li>
+              <li class="active"><a class="waves-effect" href="/pembuatan"><i class="material-icons margin-icon">schedule</i>Pembuatan</a></li>
+              <li><a class="waves-effect" href="/pesanan-masuk"><i class="material-icons margin-icon">today</i>Pesanan Masuk</a></li>
+              <li><a class="waves-effect" href="/pembayaran"><i class="material-icons margin-icon">attach_money</i>Pembayaran</a></li>
+              <li><a class="waves-effect" href="/restoran"><i class="material-icons margin-icon">settings</i>Pengaturan</a></li>
+              <!-- <li><div class="divider"></div></li>
+              <li><a class="subheader">Subheader</a></li> -->
+              <li><a class="waves-effect" href="/logout"><i class="material-icons margin-icon">arrow_forward</i>logout</a></li>
+            </ul>
+          </div>
+          <!-- /end side menu -->
+
+
+
+          <!-- Teal page Content -->
+          <div class="main">
+             <div class="row">
+              {%for Koki in koki%}
+              <div class="col s12 m6">
+                <div class="card teal">
+                  <div class="card-content white-text">
+                    <span class="card-title center-align">{{Koki.namaKoki}}</span>
+                      <p class="col s6 left-align {{Koki.idKoki}}"></p>
+                      <p class="col s6 right-align {{Koki.idKoki}}selesai"></p>
+                  </div>
+                  <hr class="white-text">
+                  <div class="card-action">
+                    <table>
+                      <tbody>
+                        {%if Data==[]%}
+                        <tr>
+                          <td class="white-text">Belum ada pesanan masuk</td>
+                        </tr>
+                        {%endif%}
+                        {%set istrue = false%}
+                        {%for Data in data%}
+                        {%if Data.idKoki == Koki.idKoki%}
+                        {%set istrue = true%}
+                         <tr> 
+                          <td class="white-text">
+                            <div class="row">
+                              <div class="col s4">{{Data.nama}}</div>
+                              <div class="col s4">{{Data.estimasi}} menit</div>
+                              <div class="col s4 right-align">{{Data.qty}} Pcs</div>
+                              {%for idUser in Data.idUser%}
+                              <div class="col s1"></div>
+                              <div class="col s5 more-padding">Meja No {{idUser.noMeja}}</div>
+                              <div class="col s6 right-align more-padding">{{idUser.qty}} Pcs</div>
+                              {%endfor%}
+                            </div>
+                            <hr class="white-text">
+                          </td>
+                        </tr>
+                        {%endif%}
+                        {%endfor%}
+                        {%if istrue==false%}
+                        <tr>
+                          <td class="white-text">Belum ada pesanan masuk</td>
+                        </tr>
+                        {%endif%}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              {%endfor%}
+            </div>
+          <a class="waves-effect waves-light btn-large next-button">Next
+            <i class="material-icons right">send</i>
+          </a>
+          </div>
+          <!-- end Teal page content -->
+        </div>
+      </div>
+      
+      <!-- end content -->
+
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="js/goresto.js"></script>
+      <script type="text/javascript">
+        $(function () {
+          var idOwner = {{ idOwner | dump | safe }}
+          var socket = io();
+          socket.on(idOwner,function(msg){
+            var $toastContent = $('<span>anda mendapatkan pesanan baru</span>').add($('<a href="/pesanan-masuk" class="btn-flat toast-action">check sekarang</a>'));
+            Materialize.toast($toastContent, 3000);
+          })
+          var koki = {{ koki | dump | safe}}
+          var data = {{data | dump | safe}}
+          for(var i=0;i<koki.length;i++){
+            var temp = 0
+            var waktu = 0
+            var idKoki = 0
+            for(var j=0;j<data.length;j++){
+              if(koki[i].idKoki == data[j].idKoki){
+                temp += data[j].estimasi
+                waktu = data[j].waktuMasuk
+                idKoki = data[j].idKoki
+              }
+            }
+            waktu = new Date(Date.parse(waktu))
+            $('.'+idKoki).html("Waktu masuk "+waktu.getHours() + ' : '+waktu.getMinutes()+' : '+waktu.getSeconds())
+            waktu.setMinutes(waktu.getMinutes()+temp)
+            $('.'+idKoki+'selesai').html("Target selesai "+waktu.getHours() + ' : '+waktu.getMinutes()+' : '+waktu.getSeconds())
+          }
+          $('.next-button').click(function(){
+            $.post('/next-menu',function(data){
+              if(data=="sukses"){
+                location.reload();
+              }
+
+            })
+          })
+        });
+      </script>
+    </body>
+  </html>

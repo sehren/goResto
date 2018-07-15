@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Admin</title>
+    </head>
+
+    <body class="background1">
+      <div class="container">
+        <div class="row vwrap">
+          <h1><a href="#"  class="teal-text text-lighten-4">GORESTO</a></h1>
+          <form class="col s6 offset-s3" action="/admin-register" method="post">
+            <div class="row">
+                <div class="input-field">
+                  <input id="name" type="text" class="validate font-color" name="name">
+                  <label for="text" data-error="wrong" data-success="right">Nama</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field">
+                  <input id="Email" type="email" class="validate font-color" name="email">
+                  <label for="email" data-error="wrong" data-success="right">Email</label>
+                </div>
+              </div> 
+              <div class="row">
+                <div class="input-field">
+                  <input id="Password" type="password" class="validate font-color" name="password">
+                  <label for="password">Password</label>
+                  <p class="red-text">{{message}}</p>
+                </div>
+              </div>         
+              <div class="row">
+                <a class="left font-color" href="/">Already a member ?</a>
+              </div>
+              <div class="row center-align">
+                <button class="btn waves-effect waves-light" type="submit">SIGN UP</button>
+              </div>
+          </form>
+        </div>
+      </div>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript">
+        // $('.login').click(function(){
+        //   var nama = $('#name').val(),
+        //       email = $('#Email').val(),
+        //       pass = $('#Password').val()
+        //       $.post("http://localhost:3000/admin-register",{name : nama,email : email,password : pass},function(ev){
+        //         if(ev=='login'){
+        //           window.location.href="/";
+        //         }
+        //         else if(ev == 'isreg')
+        //           alert('email sudah ada')
+        //       })
+        // })
+      </script>
+    </body>
+  </html>

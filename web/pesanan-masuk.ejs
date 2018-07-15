@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Pesanan Masuk</title>
+    </head>
+    <body>
+      <!-- navbar -->
+      <ul id="notif" class="dropdown-content">
+        <li class="left">Notifications</li>
+      </ul>
+      <ul id="add1" class="dropdown-content">
+        <li class="center"><b>Tambah</b></li>
+        <li class="divider"></li>
+        <li><a class="modal-trigger" href="#menu">Tambah Menu</a></li>
+        <li><a href="#!">Tambah Koki</a></li>
+      </ul>
+
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper teal">
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+            <a href="#!" class="brand-logo">GORESTO</a>
+            <ul class="right hide-on-med-and-down">
+              <li><a class="dropdown-button" href="#" data-activates="add1"><i class="large material-icons">add</i></a></li>
+              <li><a class="dropdown-button2" href="#" data-activates="notif"><i class="large material-icons">notifications<small class="notification-badge">5</small></i></a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <!-- /end navbar -->
+
+      <!-- content -->
+      <div id="main">
+        <div class="row">
+          <!-- side menu -->
+          <div class="side-menu">
+            <ul id="slide-out" class="side-nav fixed leftside-navigation ps-container ps-active-y">
+              <li>
+                <div class="user-view">
+                  <div class="background">
+                  </div>
+                  <div class="row">
+                    <div class="col s5">
+                      <a href="#!user" class="a"><img class="circle responsive-img valign profile-image" src="images/avatar.jpg"></a>
+                    </div>
+                    <div class="col s7">
+                      <a class='btn-flat white-text profile-btn non-pading' href='#'>{{name}}<span class="idowner" hidden>{{idOwner}}</span></a>
+                      <span class="white-text email">Pemilik Restoran</span>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li><a class="waves-effect" href="/"><i class="material-icons margin-icon">restaurant</i>Data Menu</a></li>
+              <li><a class="waves-effect" href="/koki"><i class="material-icons margin-icon">person</i>Data Koki</a></li>
+              <li><a class="waves-effect" href="/pembuatan"><i class="material-icons margin-icon">schedule</i>Pembuatan</a></li>
+              <li class="active"><a class="waves-effect" href="/pesanan-masuk" ><i class="material-icons margin-icon">today</i>Pesanan Masuk</a></li>
+              <li><a class="waves-effect" href="/restoran"><i class="material-icons margin-icon">settings</i>Pengaturan</a></li>
+              <!-- <li><div class="divider"></div></li>
+              <li><a class="subheader">Subheader</a></li> -->
+              <li><a class="waves-effect" href="/logout"><i class="material-icons margin-icon">arrow_forward</i>logout</a></li>
+            </ul>
+          </div>
+          <!-- /end side menu -->
+
+
+
+          <!-- Teal page Content -->
+          <div class="main">
+            <div class="row">
+              {%if order != undefined%}
+              <div class="col s12 m11">
+                <ul class="collapsible" data-collapsible="accordion">
+                  <li>
+                    <div class="collapsible-header">
+                      <div class="col s6">Open Orders</div>
+                      <div class="col s6 right-align countdown"></div>
+                    </div>
+                    <div class="collapsible-body">
+                       <table class="openTable">
+                        <thead>
+                          <tr>
+                              <th class="center-align">No Meja</th>
+                              <th class="center-align">Nama Pemesan</th>
+                              <th class="center-align">Total Harga</th>
+                              <th class="center-align">Validasi</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          {%for Data in order%}
+                          <tr class="collaps">
+                            <td class="center-align">{{Data.noMeja}}</td>
+                            <td class="center-align">{{Data.name}}</td>
+                            <td class="center-align">Rp. {{Data.price}}</td>
+                            <td class="center-align"><a href="" class="reverseClick">Validasi</a> / <a href="" class="reverseClick">tolak</a></td>
+                          </tr>
+                          <tr class="collaps-body" hidden>
+                            <td colspan="4">
+                              <h5>Detail pesanan</h5>
+                              <table>
+                                <thead>
+                                  <tr>
+                                    <th>Nama Pesanan</th>
+                                    <th>Jumlah</th>
+                                    <th>Harga</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {%for detail in Data.data%}
+                                  <tr>
+                                    <td>{{detail.nama}}</td>
+                                    <td>{{detail.qty}}</td>
+                                    <td>{{detail.price}}</td>
+                                  </tr>
+                                  {%endfor%}
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                          {%endfor%}
+                        </tbody>
+                      </table>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="collapsible-header">
+                      <div class="col s12">Closed Orders</div>
+                    </div>
+                    <div class="collapsible-body hapuspading">
+                      <ul class="collapsible popout" data-collapsible="accordion">
+                        <li>
+                          <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+                          <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                        </li>
+                        <li>
+                          <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+                          <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                        </li>
+                        <li>
+                          <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+                          <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              {%endif%}
+          </div>
+          <!-- end Teal page content -->
+        </div>
+      </div>
+      
+      <!-- end content -->
+
+      <!-- Modal Structure -->
+
+      
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="js/goresto.js"></script>
+      <script type="text/javascript">
+        $(function () {
+          var idOwner = $(".idowner").html()
+          var socket = io();
+          socket.on(idOwner,function(msg){
+            var appendOrder = `<tr class="collaps">
+                                <td class="center-align">`+msg.pesan.noMeja+`</td>
+                                <td class="center-align">`+msg.pesan.name+`</td>
+                                <td class="center-align">Rp. `+msg.pesan.price+`</td>
+                                <td class="center-align"><a href="" class="reverseClick">Validasi</a> / <a href="" class="reverseClick">tolak</a></td>
+                              </tr>
+                              <tr class="collaps-body" hidden>
+                                <td colspan="4">
+                                  <h5>Detail pesanan</h5>
+                                  <table>
+                                    <thead>
+                                      <tr>
+                                        <th>Nama Pesanan</th>
+                                        <th>Jumlah</th>
+                                        <th>Harga</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody class='`+msg.pesan.idUser+`'>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>`
+            $('table.openTable > tbody').append(appendOrder);
+            msg.pesan.data = JSON.parse(msg.pesan.data)
+            for(var i =0;i<msg.pesan.data.length;i++){
+              $('.'+msg.pesan.idUser).append('<tr><td>'+msg.pesan.data[i].nama+'</td><td>'+msg.pesan.data[i].qty+'</td><td>'+msg.pesan.data[i].price+'</td></tr>')
+            }
+          })
+          });
+        var rows = <%-name%>
+        console.log(rows)
+        $(document).on("click", "table > tbody > tr.collaps", function() {
+          $(this).next().toggle();
+        });
+        ;
+        // var x = setInterval(function() {
+
+        //     // Get todays date and time
+        //     var now = new Date().toLocaleTimeString();
+            
+        //     // Find the distance between now an the count down date
+        //     var distance = countDownDate - now;
+            
+        //     // Time calculations for days, hours, minutes and seconds
+        //     var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        //     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        //     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        //     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+        //     // Output the result in an element with id="demo"
+        //     $('.countdown').html(minutes + "m " + seconds + "s ");
+            
+        //     // If the count down is over, write some text 
+        //     if (distance < 0) {
+        //         clearInterval(x);
+        //         $('.countdown').html("EXPIRED");
+        //     }
+        // }, 1000);
+      </script>
+    </body>
+  </html>

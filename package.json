@@ -1,0 +1,42 @@
+{
+  "name": "goresto",
+  "version": "1.0.0",
+  "description": "resto App using node.js",
+  "main": "database.js",
+  "dependencies": {
+    "angular-oauth2-oidc": "^2.1.8",
+    "com-badrit-base64": "^0.2.0",
+    "connect": "^3.6.6",
+    "cookie-parser": "^1.4.3",
+    "cordova-android": "^6.3.0",
+    "cordova-browser": "^5.0.1",
+    "cordova-plugin-device": "^1.1.4",
+    "cordova-plugin-ionic-webview": "^1.1.16",
+    "cordova-plugin-facebook4": "^1.9.1",
+    "cordova-plugin-splashscreen": "^4.0.3",
+    "cordova-sms-plugin": "^0.1.11",
+    "cordova-sqlite-storage": "^2.1.2",
+    "cordova-plugin-whitelist": "^1.3.1",
+    "cordova-plugin-x-toast": "^2.6.0",
+    "cors": "^2.8.4",
+    "express-socket.io-session": "^1.3.4",
+    "express-session": "^1.15.6",
+    "formidable": "^1.1.1",
+    "ionic2-super-tabs": "^4.1.5",
+    "ionic-plugin-keyboard": "^2.2.1",
+    "moment": "^2.20.1",
+    "multer": "^1.3.0",
+    "nexmo": "^2.0.2",
+    "ng-socket-io": "^0.2.4",
+    "nodemailer": "^4.4.0",
+    "session.socket.io": "^0.2.1",
+    "socket.io": "^2.1.1",
+    "socket.io-express-session": "^0.1.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
